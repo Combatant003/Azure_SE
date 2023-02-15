@@ -1,0 +1,74 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Dashboard
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!-- Upcoming Events -->
+  <ion-list>
+    <ion-list-header><strong>Upcoming Recruiters</strong></ion-list-header>
+  </ion-list>
+  <ion-grid id="grd1" *ngFor="let company of Companies;let in=index;">
+    <ion-item *ngIf="company.isPlacementDone === false" button detail="true" (click)="setOpen(true); getId(in+1)">
+      <ion-thumbnail slot="start">
+        <img alt="{{company.name}}" src="{{company.img}}" width="100%" />
+      </ion-thumbnail>
+      <ion-label>
+        <h3>{{company.name}}</h3>
+        <p> {{company.date}} </p>
+      </ion-label>
+    </ion-item>
+  </ion-grid>
+
+  <ion-list>
+    <ion-list-header style="margin: 15px 0; text-align: center;"><strong>Recent Recruiters</strong></ion-list-header>
+  </ion-list>
+  <ion-grid id="grd2" *ngFor="let company of Companies;let in=index;">
+    <ion-item *ngIf="company.isPlacementDone === true" button detail="true" (click)="setOpen(true); getId(in+1)">
+      <ion-thumbnail slot="start">
+        <img alt="{{company.name}}" src="{{company.img}}" width="100%" />
+      </ion-thumbnail>
+      <ion-label>
+        <h3>{{company.name}}</h3>
+        <p> {{company.date}} </p>
+      </ion-label>
+    </ion-item>
+  </ion-grid>
+
+  <!-- Modal -->
+  <ion-modal [isOpen]="isModalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title *ngFor="let company of Companies;"><small id="modal-head"
+              *ngIf="company.id  === pid">{{company.name}}</small>
+          </ion-title>
+          <ion-buttons slot="end">
+            <small>
+              <ion-button (click)="setOpen(false)">Close</ion-button>
+            </small>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+
+        <ion-grid id="grd3" *ngFor="let company of Companies;">
+          <ion-card *ngIf="company.id  === pid" class="sub">
+            <img id="img1" src="{{company.img}}" alt="">
+              <ion-card-header>
+                  <ion-card-title>
+                    <ion-label>{{company.name}}</ion-label>
+                    
+                  </ion-card-title>
+              </ion-card-header>
+          </ion-card>
+        </ion-grid>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+
+</ion-content>

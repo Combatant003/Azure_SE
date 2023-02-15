@@ -1,0 +1,27 @@
+ion-content {
+  background: white;
+  --offset-bottom: auto !important;
+  --overflow: hidden;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.toolbar-background {
+  background: white;
+  color: white;
+  background-color: white;
+}
+
+
+#grd1 {
+  padding: 0;
+  margin-left: -10px;
+}
+
+#grd2 {
+  padding: 0;
+  margin-left: -10px;
+}
